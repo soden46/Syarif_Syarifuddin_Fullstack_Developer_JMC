@@ -62,6 +62,11 @@
                         <td>{{$data->Jenis_kelamin}}</td>
                         <td>{{$data->created_at}}</td>
                     </tr>
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            Total Penduduk: {!!$jumlah!!}
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
             </table>

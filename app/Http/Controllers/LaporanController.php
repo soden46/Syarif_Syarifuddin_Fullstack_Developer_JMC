@@ -22,35 +22,35 @@ class LaporanController extends Controller
                 ->where('penduduk.kabupaten', '=', $kab)
                 ->where('penduduk.provinsi', '=', $prov)
                 ->paginate(5);
-
-            return view('contents.laporan', compact('datawarga', 'request'));
+            $jumlah = $datawarga->count();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
         }
         // Seleksi Data Jika Kolom Provinsi Diisi, dan Kolom Lain Kosong
         elseif (!empty($request["provinsi"]) && empty($request["kabupaten"]) && empty($request["nama"])) {
             $datawarga = Penduduk::where('penduduk.provinsi', '=', $prov)
                 ->paginate(5);
-
-            return view('contents.laporan', compact('datawarga', 'request'));
+            $jumlah = $datawarga->count();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
         }
         // Seleksi Data Jika Kolom Kabupaten Diisi, dan Kolom Lain Kosong
         elseif (empty($request["provinsi"]) && !empty($request["kabupaten"]) && empty($request["nama"])) {
             $datawarga = Penduduk::where('penduduk.kabupaten', '=', $kab)
                 ->paginate(5);
-
-            return view('contents.laporan', compact('datawarga', 'request'));
+            $jumlah = $datawarga->count();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
         }
         // Seleksi Data Jika Kolom Nama Diisi, dan Kolom Lain Kosong 
         elseif (empty($request["provinsi"]) && empty($request["kabupaten"]) && !empty($request["nama"])) {
             $datawarga = Penduduk::where('penduduk.nama', '=', $nama)
                 ->paginate(5);
-
-            return view('contents.laporan', compact('datawarga', 'request'));
+            $jumlah = $datawarga->count();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
         }
         // Tanpa Seleksi Data
         else {
             $datawarga = Penduduk::paginate(5);
-
-            return view('contents.laporan', compact('datawarga', 'request'));
+            $jumlah = $datawarga->count();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
         }
     }
 
