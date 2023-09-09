@@ -57,6 +57,7 @@ class LaporanController extends Controller
     // Export Laporan Ke Excel
     public function cetak_excel()
     {
-        return (new ExportExcel)->download('Laporan_Data_Penduduk.xlsx');
+
+        return Excel::download(new ExportExcel, 'Laporan_Data_Penduduk.xlsx');
     }
 }
