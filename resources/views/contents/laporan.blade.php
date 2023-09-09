@@ -110,7 +110,7 @@
                 }
                 if (kab !== "") {
                     // Filter Tabel Berdasarkan Kabupaten
-                    $("#kabupaten").change(function() {
+                    $("#btnexport").click(function() {
                         var the_selected_kab = $(this).val();
                         window.location = "/excel?kabupaten=" + the_selected_kab;
                     });

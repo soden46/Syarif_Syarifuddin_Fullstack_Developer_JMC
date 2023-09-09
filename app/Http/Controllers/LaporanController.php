@@ -58,17 +58,20 @@ class LaporanController extends Controller
     public function cetak_excel(Request $request)
     {
         $prov = $request['prvs'];
-        $data = Penduduk::where('Provinsi', '=', $prov)->get([
-            'id',
-            'Nama',
-            'NIK',
-            'Jenis_Kelamin',
-            'tgl_lahir',
-            'Alamat',
-            'Provinsi',
-            'Kabupaten',
-            'created_at'
-        ])->toArray();
+        $kab = $request['kbptn'];
+        $data = Penduduk::where('Provinsi', '=', $prov)
+            ->orWhere('Kabupaten', '=', $kab)
+            ->get([
+                'id',
+                'Nama',
+                'NIK',
+                'Jenis_Kelamin',
+                'tgl_lahir',
+                'Alamat',
+                'Kabupaten',
+                'Provinsi',
+                'created_at'
+            ])->toArray();
         return Excel::download(new ExportExcel($data), 'Laporan-Data-Penduduk.xls');
     }
 }

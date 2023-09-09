@@ -26,8 +26,8 @@ class ExportExcel implements FromCollection, WithHeadings
             'Jenis Kelamin',
             'Tanggal Lahir',
             'Alamat',
-            'Provinsi',
             'Kabupaten',
+            'Provinsi',
             'Timestamp'
         ];
     }
