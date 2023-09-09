@@ -18,7 +18,7 @@
                     <input type="text" name="kbptn" id="kbptn" value="{{request()->input('kabupaten')}}" hidden>
                 </div>
             </form>
-            <form action="{{route('laporan/cari')}}" method="GET" class="col-1 d-flex mx-auto float-left">
+            <form action="{{route('laporan/cari')}}" method="GET" class="col-1 d-flex mx-auto mb-3 float-left">
                 <div class="form-inline">
                     <div class="col-3 d-flex">
                         <select class="form-control" id="provinsi" name="provinsi">
