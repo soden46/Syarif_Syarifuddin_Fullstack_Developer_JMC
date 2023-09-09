@@ -11,12 +11,16 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <form action="{{route('laporan/cari')}}" method="GET">
-                <div class="form-inline col-10 d-flex mb-3">
-                    <div class="col-6 ms-4 float-right">
-                        <a class="btn btn-md btn-success" href="{{route('excel')}}">Export Excel</a>
-                    </div>
-                    <div class="col-5 d-flex mx-auto float-left">
+            <form action="{{route('excel')}}" method="GET">
+                <div class="col-6 ms-4 float-right">
+                    <button type="submit" class="btn btn-md btn-success" onclick="laporan();" id="btnexport" name="btnexport">Export Excel</button>
+                    <input type="text" name="prvs" id="prvs" value="{{request()->input('provinsi')}}" hidden>
+                    <input type="text" name="kbptn" id="kbptn" value="{{request()->input('kabupaten')}}" hidden>
+                </div>
+            </form>
+            <form action="{{route('laporan/cari')}}" method="GET" class="col-1 d-flex mx-auto float-left">
+                <div class="form-inline">
+                    <div class="col-3 d-flex">
                         <select class="form-control" id="provinsi" name="provinsi">
                             <option value="">Pilih Provinsi</option>
                             @foreach($datawarga as $data)
@@ -68,6 +72,7 @@
     </div>
     <!-- Filter Data Tabel Berdasarkan Provinsi atau Kabupaten -->
     <script>
+        // Filter Data Tabel Laporan
         $(document).ready(function() {
 
             var prov = $("#provinsi");
@@ -90,5 +95,27 @@
             }
 
         });
+        // Filter Data Ekport Excel
+        function laporan() {
+            $(document).ready(function() {
+
+                var prov = $("#provinsi");
+                var kab = $("#kabupaten");
+                // Filter Tabel Berdasarkan Provinsi
+                if (prov !== "") {
+                    $("#btnexport").click(function() {
+                        var the_selected_prov = $(this).val();
+                        window.location = "/excel?provinsi=" + the_selected_prov;
+                    });
+                }
+                if (kab !== "") {
+                    // Filter Tabel Berdasarkan Kabupaten
+                    $("#kabupaten").change(function() {
+                        var the_selected_kab = $(this).val();
+                        window.location = "/excel?kabupaten=" + the_selected_kab;
+                    });
+                }
+            });
+        }
     </script>
     @endsection

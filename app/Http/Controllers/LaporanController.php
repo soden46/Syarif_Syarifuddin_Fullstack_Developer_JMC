@@ -55,9 +55,20 @@ class LaporanController extends Controller
     }
 
     // Export Laporan Ke Excel
-    public function cetak_excel()
+    public function cetak_excel(Request $request)
     {
-
-        return Excel::download(new ExportExcel, 'Laporan_Data_Penduduk.xlsx');
+        $prov = $request['prvs'];
+        $data = Penduduk::where('Provinsi', '=', $prov)->get([
+            'id',
+            'Nama',
+            'NIK',
+            'Jenis_Kelamin',
+            'tgl_lahir',
+            'Alamat',
+            'Provinsi',
+            'Kabupaten',
+            'created_at'
+        ])->toArray();
+        return Excel::download(new ExportExcel($data), 'Laporan-Data-Penduduk.xls');
     }
 }

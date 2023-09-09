@@ -3,15 +3,32 @@
 namespace App\Exports;
 
 use App\Models\Penduduk;
-use Illuminate\Contracts\View\View;
-use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ExportExcel implements FromView
+class ExportExcel implements FromCollection, WithHeadings
 {
-    public function view(): View
+    protected $data;
+    function __construct($data)
     {
-        return view('contents.export-excel', [
-            'datawarga' => Penduduk::all()
-        ]);
+        $this->data = $data;
+    }
+    public function collection()
+    {
+        return collect($this->data);
+    }
+    public function headings(): array
+    {
+        return [
+            'No',
+            'Nama',
+            'NIK',
+            'Jenis Kelamin',
+            'Tanggal Lahir',
+            'Alamat',
+            'Provinsi',
+            'Kabupaten',
+            'Timestamp'
+        ];
     }
 }
