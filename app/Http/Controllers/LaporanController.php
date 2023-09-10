@@ -16,41 +16,70 @@ class LaporanController extends Controller
         $prov = $request['provinsi'];
         $kab = $request['kabupaten'];
         $nama = $request['nama'];
+
+        // Ambil Data ID Provinsi Berdasarkan Filter Yang Dipilih
+        $idprov = provinsi::where('Nama_Provinsi', '=', $prov)->get()->value('id');
+
         // Seleksi Data Jika Kolom Provinsi, Kabupaten dan Nama Diisi
         if (!empty($request["provinsi"]) && !empty($request["kabupaten"]) && !empty($request["nama"])) {
             $datawarga = Penduduk::where('penduduk.nama', '=', $nama)
                 ->where('penduduk.kabupaten', '=', $kab)
                 ->where('penduduk.provinsi', '=', $prov)
-                ->paginate(5);
+                ->paginate(10);
+            // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
-            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
+            // Ambil Data Provinsi
+            $provinsi = provinsi::get();
+            // Ambil data Kabupaten Berdasarkan ID Provinsi
+            $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
         }
         // Seleksi Data Jika Kolom Provinsi Diisi, dan Kolom Lain Kosong
         elseif (!empty($request["provinsi"]) && empty($request["kabupaten"]) && empty($request["nama"])) {
             $datawarga = Penduduk::where('penduduk.provinsi', '=', $prov)
-                ->paginate(5);
+                ->paginate(10);
+            // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
-            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
+            // Ambil Data Provinsi
+            $provinsi = provinsi::get();
+            // Ambil data Kabupaten Berdasarkan ID Provinsi
+            $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
         }
         // Seleksi Data Jika Kolom Kabupaten Diisi, dan Kolom Lain Kosong
         elseif (empty($request["provinsi"]) && !empty($request["kabupaten"]) && empty($request["nama"])) {
             $datawarga = Penduduk::where('penduduk.kabupaten', '=', $kab)
-                ->paginate(5);
+                ->paginate(10);
+            // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
-            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
+            // Ambil Data Provinsi
+            $provinsi = provinsi::get();
+            // Ambil data Kabupaten Berdasarkan ID Provinsi
+            $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
         }
         // Seleksi Data Jika Kolom Nama Diisi, dan Kolom Lain Kosong 
         elseif (empty($request["provinsi"]) && empty($request["kabupaten"]) && !empty($request["nama"])) {
             $datawarga = Penduduk::where('penduduk.nama', '=', $nama)
-                ->paginate(5);
+                ->paginate(10);
+            // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
-            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
+            // Ambil Data Provinsi
+            $provinsi = provinsi::get();
+            // Ambil data Kabupaten Berdasarkan ID Provinsi
+            $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
         }
         // Tanpa Seleksi Data
         else {
-            $datawarga = Penduduk::paginate(5);
+            $datawarga = Penduduk::paginate(10);
+            // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
-            return view('contents.laporan', compact('datawarga', 'request', 'jumlah'));
+            // Ambil Data Provinsi
+            $provinsi = provinsi::get();
+            // Ambil data Kabupaten Berdasarkan ID Provinsi
+            $kabupaten = kabupaten::get();
+            return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
         }
     }
 

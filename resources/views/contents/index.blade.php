@@ -19,14 +19,14 @@
                     <div class="col-5 d-flex mx-auto float-left">
                         <select class="form-control" id="provinsi" name="provinsi">
                             <option value="">Pilih Provinsi</option>
-                            @foreach($datawarga as $data)
-                            <option value="{{$data->Provinsi}}" {{request()->input('provinsi')==$data->Provinsi ? 'selected' : '' }}>{{$data->Provinsi}}</option>
+                            @foreach($provinsi as $data)
+                            <option value="{{$data->Nama_Provinsi}}" {{request()->input('provinsi')==$data->Nama_Provinsi ? 'selected' : '' }}>{{$data->Nama_Provinsi}}</option>
                             @endforeach
                         </select>
                         <select class="form-control ms-2" id="kabupaten" name="kabupaten" class="form-control col-2 px-3">
                             <option value="">Pilih Kabupaten</option>
-                            @foreach($datawarga as $data)
-                            <option value="{{$data->Kabupaten}}" {{request()->input('kabupaten')==$data->Kabupaten ? 'selected' : '' }}>{{$data->Kabupaten}}</option>
+                            @foreach($kabupaten as $data)
+                            <option value="{{$data->Nama_Kabupaten}}" {{request()->input('kabupaten')==$data->Nama_Kabupaten ? 'selected' : '' }}>{{$data->Nama_Kabupaten}}</option>
                             @endforeach
                         </select>
                         <input class="form-control ms-2" type="text" id="nama" name="nama" placeholder="Pencarian Nama">
