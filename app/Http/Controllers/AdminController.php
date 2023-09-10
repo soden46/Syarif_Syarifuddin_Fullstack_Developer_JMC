@@ -101,7 +101,7 @@ class AdminController extends Controller
     public function edit($id)
     {
 
-        $datawarga = Penduduk::findOrFail($id)->first();
+        $datawarga = Penduduk::where('id', '=', $id)->first();
         $provinsi = provinsi::get();
         $kabupaten = kabupaten::get();
         return view(

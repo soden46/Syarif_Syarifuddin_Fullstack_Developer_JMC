@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2023 at 01:46 PM
+-- Generation Time: Sep 10, 2023 at 07:00 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -49,6 +49,7 @@ CREATE TABLE `failed_jobs` (
 -- Table structure for table `kabupaten`
 --
 -- Creation: Sep 08, 2023 at 08:33 AM
+-- Last update: Sep 10, 2023 at 04:49 AM
 --
 
 CREATE TABLE `kabupaten` (
@@ -69,8 +70,30 @@ CREATE TABLE `kabupaten` (
 --
 
 INSERT INTO `kabupaten` (`id`, `Nama_Kabupaten`, `Provinsi`, `created_at`) VALUES
-(1, 'Lampung Tengah', 1, NULL),
-(2, 'Sleman', 2, NULL);
+(1, 'Lampung Tengah', 1, '2023-09-10 04:41:12'),
+(2, 'Sleman', 2, '2023-09-09 17:00:00'),
+(3, 'Kepulauan Seribu', 4, '2023-09-10 04:38:53'),
+(4, 'Jakarta Barat', 4, '2023-09-10 04:41:55'),
+(5, 'Jakarta Pusat', 4, '2023-09-10 04:38:53'),
+(6, 'Jakarta Selatan', 4, '2023-09-10 04:38:53'),
+(7, 'Jakarta Timur', 4, '2023-09-10 04:38:53'),
+(8, 'Jakarta Utara', 4, '2023-09-10 04:38:53'),
+(9, 'Banjar Negara', 3, '2023-09-10 04:43:32'),
+(10, 'Banyumas', 3, '2023-09-10 04:43:32'),
+(11, 'Batang', 3, '2023-09-10 04:43:32'),
+(12, 'Blora', 3, '2023-09-10 04:43:32'),
+(13, 'Boyolali', 3, '2023-09-10 04:43:32'),
+(14, 'Brebes', 3, '2023-09-10 04:43:32'),
+(15, 'Cilacap', 3, '2023-09-10 04:43:32'),
+(16, 'Bantul', 2, '2023-09-10 04:43:32'),
+(17, 'Gunngkidul', 2, '2023-09-10 04:43:32'),
+(18, 'Kulon Progo', 2, '2023-09-10 04:43:32'),
+(19, 'Kota Yogyakarta', 2, '2023-09-10 04:43:32'),
+(20, 'Lampung Barat', 1, '2023-09-10 04:43:32'),
+(21, 'Lampung Selatan', 1, '2023-09-10 04:43:32'),
+(22, 'Lampung Timur', 1, '2023-09-10 04:43:32'),
+(23, 'Lampung Utara', 1, '2023-09-10 04:43:32'),
+(24, 'Mesuji', 1, '2023-09-10 04:43:32');
 
 -- --------------------------------------------------------
 
@@ -127,7 +150,7 @@ CREATE TABLE `password_reset_tokens` (
 -- Table structure for table `penduduk`
 --
 -- Creation: Sep 08, 2023 at 04:57 PM
--- Last update: Sep 09, 2023 at 06:57 AM
+-- Last update: Sep 10, 2023 at 04:58 AM
 --
 
 CREATE TABLE `penduduk` (
@@ -152,8 +175,8 @@ CREATE TABLE `penduduk` (
 --
 
 INSERT INTO `penduduk` (`id`, `Nama`, `NIK`, `Jenis_kelamin`, `tgl_lahir`, `Alamat`, `Provinsi`, `Kabupaten`, `created_at`, `updated_at`) VALUES
-(11, 'Syarif Syarifuddin', '123456', 'Pria', '2023-09-14', 'Kota Gajah', 'Lampung', 'Lampung Tengah', '2023-09-08 20:25:16', '2023-09-08 21:09:44'),
-(12, 'udin', '555555', 'Pria', '2023-09-18', 'Sianduadi, Mlati', 'Yogyakarta', 'Sleman', '2023-09-08 23:57:37', '2023-09-08 23:57:37');
+(12, 'udin', '555555', 'Pria', '2023-09-18', 'Sianduadi, Mlati', 'Yogyakarta', 'Sleman', '2023-09-08 23:57:37', '2023-09-08 23:57:37'),
+(13, 'syarif syarifuddin', '12121212121212', 'Pria', '2023-09-15', 'Kota Gajah', 'Lampung', 'Lampung Tengah', '2023-09-09 05:19:46', '2023-09-09 21:58:52');
 
 -- --------------------------------------------------------
 
@@ -186,6 +209,7 @@ CREATE TABLE `personal_access_tokens` (
 -- Table structure for table `provinsi`
 --
 -- Creation: Sep 08, 2023 at 03:08 PM
+-- Last update: Sep 10, 2023 at 04:50 AM
 --
 
 CREATE TABLE `provinsi` (
@@ -204,7 +228,9 @@ CREATE TABLE `provinsi` (
 
 INSERT INTO `provinsi` (`id`, `Nama_Provinsi`, `created_at`) VALUES
 (1, 'Lampung', '2023-09-08 15:20:08'),
-(2, 'Yogyakarta', '2023-09-08 15:20:21');
+(2, 'Yogyakarta', '2023-09-08 15:20:21'),
+(3, 'Jawa Tengah', '2023-09-10 04:50:17'),
+(4, 'Jakarta', '2023-09-09 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -300,7 +326,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `kabupaten`
 --
 ALTER TABLE `kabupaten`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -312,7 +338,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `penduduk`
 --
 ALTER TABLE `penduduk`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -324,7 +350,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `provinsi`
 --
 ALTER TABLE `provinsi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
