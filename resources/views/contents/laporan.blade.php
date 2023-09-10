@@ -61,6 +61,7 @@
                         <td>{{$data->Alamat.", ".$data->Kabupaten.", ".$data->Provinsi}}</td>
                         <td>{{$data->Jenis_kelamin}}</td>
                         <td>{{$data->created_at}}</td>
+
                     </tr>
                     @endforeach
                     <tr>

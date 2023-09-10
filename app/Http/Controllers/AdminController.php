@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\kabupaten;
 use Illuminate\Http\Request;
 use App\Models\Penduduk;
-use App\Models\provinsi;
+use App\Models\Provinsi;
 
 class AdminController extends Controller
 {
@@ -17,7 +17,7 @@ class AdminController extends Controller
         $nama = $request['nama'];
 
         // Ambil Data ID Provinsi Berdasarkan Filter Yang Dipilih
-        $idprov = provinsi::where('Nama_Provinsi', '=', $prov)->get()->value('id');
+        $idprov = Provinsi::where('Nama_Provinsi', '=', $prov)->get()->value('id');
 
         // Seleksi Data Jika Kolom Provinsi, Kabupaten dan Nama Diisi
         if (!empty($request["provinsi"]) && !empty($request["kabupaten"]) && !empty($request["nama"])) {
@@ -26,7 +26,7 @@ class AdminController extends Controller
                 ->where('penduduk.provinsi', '=', $prov)
                 ->paginate(10);
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.index', compact('datawarga', 'request', 'provinsi', 'kabupaten'));
@@ -36,7 +36,7 @@ class AdminController extends Controller
             $datawarga = Penduduk::where('penduduk.provinsi', '=', $prov)
                 ->paginate(10);
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.index', compact('datawarga', 'request', 'provinsi', 'kabupaten'));
@@ -46,7 +46,7 @@ class AdminController extends Controller
             $datawarga = Penduduk::where('penduduk.kabupaten', '=', $kab)
                 ->paginate(10);
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.index', compact('datawarga', 'request', 'provinsi', 'kabupaten'));
@@ -56,7 +56,7 @@ class AdminController extends Controller
             $datawarga = Penduduk::where('penduduk.nama', '=', $nama)
                 ->paginate(10);
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.index', compact('datawarga', 'request', 'provinsi', 'kabupaten'));
@@ -64,7 +64,7 @@ class AdminController extends Controller
         // Tanpa Seleksi Data
         else {
             $datawarga = Penduduk::paginate(10);
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             $kabupaten = kabupaten::get();
             return view('contents.index', compact('datawarga', 'request', 'provinsi', 'kabupaten'));
         }

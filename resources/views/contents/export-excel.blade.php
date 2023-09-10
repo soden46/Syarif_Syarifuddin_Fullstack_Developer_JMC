@@ -69,7 +69,7 @@
             <tr>
                 <th>{{$loop->iteration}}</th>
                 <td>{{$data->Nama}}</td>
-                <td>{{$data->NIK}}</td>
+                <td>{{$data->"NIK"}}</td>
                 <td>{{$data->tgl_lahir}}</td>
                 <td>{{$data->Alamat.", ".$data->Kabupaten.", ".$data->Provinsi}}</td>
                 <td>{{$data->Jenis_kelamin}}</td>

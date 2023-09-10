@@ -6,7 +6,7 @@ use App\Exports\ExportExcel;
 use App\Models\kabupaten;
 use Illuminate\Http\Request;
 use App\Models\Penduduk;
-use App\Models\provinsi;
+use App\Models\Provinsi;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanController extends Controller
@@ -18,7 +18,7 @@ class LaporanController extends Controller
         $nama = $request['nama'];
 
         // Ambil Data ID Provinsi Berdasarkan Filter Yang Dipilih
-        $idprov = provinsi::where('Nama_Provinsi', '=', $prov)->get()->value('id');
+        $idprov = Provinsi::where('Nama_P', '=', $prov)->get()->value('id');
 
         // Seleksi Data Jika Kolom Provinsi, Kabupaten dan Nama Diisi
         if (!empty($request["provinsi"]) && !empty($request["kabupaten"]) && !empty($request["nama"])) {
@@ -29,7 +29,7 @@ class LaporanController extends Controller
             // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
@@ -41,7 +41,7 @@ class LaporanController extends Controller
             // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
@@ -53,7 +53,7 @@ class LaporanController extends Controller
             // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
@@ -65,7 +65,7 @@ class LaporanController extends Controller
             // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::where('Provinsi', '=', $idprov)->get();
             return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
@@ -76,7 +76,7 @@ class LaporanController extends Controller
             // Menghitung Jumlah Warga
             $jumlah = $datawarga->count();
             // Ambil Data Provinsi
-            $provinsi = provinsi::get();
+            $provinsi = Provinsi::get();
             // Ambil data Kabupaten Berdasarkan ID Provinsi
             $kabupaten = kabupaten::get();
             return view('contents.laporan', compact('datawarga', 'request', 'jumlah', 'provinsi', 'kabupaten'));
