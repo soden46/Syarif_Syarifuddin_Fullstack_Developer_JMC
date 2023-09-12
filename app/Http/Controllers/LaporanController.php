@@ -18,7 +18,7 @@ class LaporanController extends Controller
         $nama = $request['nama'];
 
         // Ambil Data ID Provinsi Berdasarkan Filter Yang Dipilih
-        $idprov = Provinsi::where('Nama_P', '=', $prov)->get()->value('id');
+        $idprov = Provinsi::where('Nama_Provinsi', '=', $prov)->get()->value('id');
 
         // Seleksi Data Jika Kolom Provinsi, Kabupaten dan Nama Diisi
         if (!empty($request["provinsi"]) && !empty($request["kabupaten"]) && !empty($request["nama"])) {
